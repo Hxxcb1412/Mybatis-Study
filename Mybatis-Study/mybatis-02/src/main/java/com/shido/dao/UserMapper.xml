@@ -4,16 +4,9 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace=绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.shido.dao.UserMapper">
-    <!--
-    select * from mybatis.user where id = ?
-    select * from mybatis.user where id = 1 or 1=1
-    -->
-    <select id="getUserLike" resultType="com.shido.pojo.User">
-        select * from mybatis.user where name like #{value}
-    </select>
 
     <!--查询语句-->
-    <select id="getUserList" resultType="com.shido.pojo.User">
+    <select id="getUserList" resultType="user">
         select * from mybatis.user
     </select>
 
@@ -21,21 +14,10 @@
         select * from mybatis.user where id = #{id}
     </select>
 
-    <select id="getUserById2" resultType="com.shido.pojo.User" parameterType="map">
-        select * from mybatis.user where id = #{id} and name = #{name};
-    </select>
-
     <!--对象中的对象，可以直接取出来-->
     <insert id="addUser" parameterType="com.shido.pojo.User">
         insert into mybatis.user (id, name, pwd) values (#{id}, #{name}, #{pwd});
     </insert>
-
-    <!--    &lt;!&ndash;对象中的对象，可以直接取出来-->
-    <!--    传递map的key-->
-    <!--    &ndash;&gt;-->
-    <!--    <insert id="addUser2" parameterType="map">-->
-    <!--        insert into mybatis.user (id, pwd) values (#{userid}, #{passWord});-->
-    <!--    </insert>-->
 
     <update id="updateUser" parameterType="com.shido.pojo.User">
         update mybatis.user
